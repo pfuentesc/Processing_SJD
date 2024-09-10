@@ -30,7 +30,7 @@ Actualmente el script está preparado para hacer la conversión de las imágenes
 - AVH
 - LESEX
 
->[!warning] Error con imágenes DTI en processing1 y processing2
+># Error con imágenes DTI en processing1 y processing2
 >
 >Actualmente las imágenes de DTI no se convierten correctamente con el script de `runProcessing.sh` si se ejecuta en processing1 o processing2. Esto ocurre porque la versión de `dcm2niix` que hay en los processing 1 y 2 es antigua y tiene un error a la hora de identificar las imágenes. Esto no pasaba antes, parece deberse al cambio de software que han hecho en SJD en julio de 2024.
 >
