@@ -29,6 +29,7 @@ Actualmente el script está preparado para hacer la conversión de las imágenes
 - MANIA
 - AVH
 - LESEX
+- TLP
 
 >### Error con imágenes DTI en processing1 y processing2
 >
