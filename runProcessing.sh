@@ -17,10 +17,10 @@ for i in $(ls $pendingfolder); do
     
     # Compress and copy DICOM folder
     cd $pendingfolder
-    #dicomzipfile=../tmp/$i.zip
-    #echo Creating $dicomzipfile 
-    #zip -r $dicomzipfile $i
-    #mv $dicomzipfile /media/store/image/DICOM/$i.zip
+    dicomzipfile=../tmp/$i.zip
+    echo Creating $dicomzipfile 
+    zip -r $dicomzipfile $i
+    mv $dicomzipfile /media/store/image/DICOM/$i.zip
     
     
     # Convert DICOM to NIFTI
@@ -154,7 +154,7 @@ for i in $(ls $pendingfolder); do
     mv DWI*.nii.gz dti36d_sjd.nii.gz
     mv *B0_DWI*.nii.gz b0_dti36d_sjd.nii.gz
     
-    if [ -z $( ls -A . ) ]; then 
+    if [ ! -z "$( ls -A )" ]; then 
         mkdir $analyzedir/dti_36d_sjd
         mv * $analyzedir/dti_36d_sjd
     fi    

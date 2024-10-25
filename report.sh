@@ -6,8 +6,8 @@ echo Please check that it is correctly assigned before running further analyses
 echo -----------
 echo
 
-pendingfolder=/media/analysis/usr/pfuentesc/processing_SJD/test/pending/
-analyzedir=/media/analysis/usr/pfuentesc/processing_SJD/test/analyze
+pendingfolder=/media/analysis/share/Processing_SJD/pending/
+analyzedir=/media/store/image/ANALYZE
 
 for i in $(ls $pendingfolder); do
     
@@ -97,7 +97,7 @@ for i in $(ls $pendingfolder); do
         NBACK="INCOMPLETE"
     fi
     
-    if [ $(fslnvols iaps_sjd/iaps_sjd.nii.gz) -eq 385 ]; then
+    if [ $(fslnvols iaps_sjd/iaps_sjd.nii.gz) -eq 390 ]; then
         IAPS="OK"
     elif [ -f iaps_sjd/iaps_sjd.nii.gz ]; then
         IAPS="INCOMPLETE"
@@ -129,7 +129,7 @@ for i in $(ls $pendingfolder); do
 	    CAPTURA="INCOMPLETE"
 	fi
 
-	if [ $(fslnvols memoria_sjd/memoria_sjd.nii.gz) -eq 242 ]; then
+	if [ $(fslnvols memoria_sjd/memoria_sjd.nii.gz) -eq 245 ]; then
 	    MEMORIA="OK"
 	elif [ -f memoria_sjd/memoria_sjd.nii.gz ]; then
 	    MEMORIA="INCOMPLETE"
@@ -184,13 +184,15 @@ for i in $(ls $pendingfolder); do
     
     
     # Detect protocol
-    if [[ -f alucinaciones_sjd/alucinaciones_sjd.nii.gz || -f captura_sjd/captura_sjd.nii.gz || -f memoria_sjd/memoria_sjd.nii.gz || -f rimas_sjd/rimas_sjd.nii.gz ]]; then
+    if [[ -f alucinaciones_sjd/alucinaciones_sjd.nii.gz || -f captura_sjd/captura_sjd.nii.gz || -f rimas_sjd/rimas_sjd.nii.gz ]]; then
         PROTOCOL="AVH"
     elif [[ -f produccion_sjd/produccion_sjd.nii.gz || -f semantica_sjd/semantica_sjd.nii.gz || -f hayling_sjd/hayling_sjd.nii.gz ]]; then
         PROTOCOL="LESEX"
-    elif [[ -f nback_sjd/nback_sjd.nii.gz || -f dti_36d_sjd/dti36d_sjd.nii.gz ]]; then
+    elif [[ -f memoria_sjd/memoria_sjd.nii.gz && -f iaps_sjd/iaps_sjd.nii.gz && -f nback_sjd/nback_sjd.nii.gz ]]; then
+        PROTOCOL="TLP"
+    elif [[ -f nback_sjd/nback_sjd.nii.gz && -f cmet_sjd/cmet_sjd.nii.gz && -f reward2rlt_sjd/reward2rlt_sjd.nii.gz ]]; then
         PROTOCOL="CANNABIS"
-    elif [[ -f iaps_sjd/iaps_sjd.nii.gz ]]; then
+    elif [[ -f cmet_sjd/cmet_sjd.nii.gz && -f reward2rlt_sjd/reward2rlt_sjd.nii.gz && -f iaps_sjd/iaps_sjd.nii.gz ]]; then
         PROTOCOL="FEP"
     elif [[ -f reward1mid_sjd/reward1mid_sjd.nii.gz || -f metro_sjd/metro_sjd.nii.gz ]]; then
         PROTOCOL="MANIA"
