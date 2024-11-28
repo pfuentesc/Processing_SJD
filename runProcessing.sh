@@ -12,16 +12,20 @@ for i in $(ls $pendingfolder); do
     mkdir tmp/$i
     
     # Create ANALYZE subject directory
-    analyzedir=/media/store/image/ANALYZE/$i
+    analyzedir=/media/analysis/share/Processing_SJD/analyze/$i
     mkdir $analyzedir
     
-    # Compress and copy DICOM folder
-    cd $pendingfolder
-    dicomzipfile=../tmp/$i.zip
-    echo Creating $dicomzipfile 
-    zip -r $dicomzipfile $i
-    mv $dicomzipfile /media/store/image/DICOM/$i.zip
+    # Compress and copy DICOM folder (only if it does not exist)
+    if [ ! -f /media/store/image/DICOM/$i.zip ]; then
+        cd $pendingfolder
+        dicomzipfile=../tmp/$i.zip
+        echo Creating $dicomzipfile 
+        zip -r $dicomzipfile $i
+        mv $dicomzipfile /media/store/image/DICOM/$i.zip
+    fi
     
+    cd $pendingfolder
+       
     
     # Convert DICOM to NIFTI
     mcverter -o ../tmp/$i -f nifti -v -x -d -n -F PR $i/
